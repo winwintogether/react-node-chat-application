@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-import "./App.css";
 import JoinChat from "./components/chat/JoinChat";
 import { RoomInterface } from "./interfaces/Room";
 import Chat from "./components/chat/Chat";
+import "./App.css";
 
 const socket: Socket = io("http://localhost:5000");
 

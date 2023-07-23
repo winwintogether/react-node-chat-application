@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Socket } from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { RoomInterface, MessageInterface } from "../../interfaces/Room";
