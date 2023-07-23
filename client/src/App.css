@@ -1,7 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
+body {
+  background-color: #d9d9d9;
+}
 
 .appContainer {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.joinChatContainer {
+  background-color: #fff;
+  margin: auto;
+  border: 2px solid #d9d9d9;
+  padding: 0.875rem;
+  width: 15rem;
+}
+.joinChatContainer .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.joinChatContainer .form input,
+.joinChatContainer .form button {
+  height: 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d9d9d9;
+}
+
+.joinChatContainer .form button {
+  background-color: aquamarine;
+  border: transparent;
+}
+
+.joinChatContainer .form button:hover {
+  background-color: #00cc00;
+  cursor: pointer;
 }
