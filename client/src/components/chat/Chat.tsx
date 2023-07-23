@@ -47,7 +47,7 @@ const Chat: React.FC<{
   return (
     <div className="chatContainer">
       <div className="header">
-        <p>Live Chat</p>
+        <p>Live Chat {props.roomData.names} <span>active now</span></p>
       </div>
       <div className="body">
         <ScrollToBottom className="message-container">
