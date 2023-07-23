@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { RoomInterface, MessageInterface } from "../../interfaces/Room";
 import { Socket } from "socket.io-client";
+import ScrollToBottom from "react-scroll-to-bottom";
+import { RoomInterface, MessageInterface } from "../../interfaces/Room";
+import "../../App.css";
 
 const Chat: React.FC<{
   socket: Socket;
@@ -26,7 +28,7 @@ const Chat: React.FC<{
     };
   }, [props.socket, handleReceiveMessage]);
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     const newMessageData: MessageInterface = {
       names: props.roomData.names,
       room: props.roomData.room,
@@ -36,27 +38,51 @@ const Chat: React.FC<{
         ":" +
         new Date(Date.now()).getMinutes(),
     };
-    await props.socket.emit("send_message", newMessageData);
+    props.socket.emit("send_message", newMessageData);
+    setMessages((prevMessages) => [...prevMessages, newMessageData]);
     setMessageValue("");
     setCanSendMessage(false);
   };
 
   return (
-    <div>
-      <h6>Live chat</h6>
-      <div>
-        {messages.map((message) => (
-          <h2>Message: {message.message}</h2>
-        ))}
+    <div className="chatContainer">
+      <div className="header">
+        <p>Live Chat</p>
       </div>
-      <div>
+      <div className="body">
+        <ScrollToBottom className="message-container">
+          {messages.map((message) => {
+            return (
+              <div
+                className="message"
+                id={props.roomData.names === message.names ? "you" : "other"}
+              >
+                <div>
+                  <div className="message-content">
+                    <p>{message.message}</p>
+                  </div>
+                  <div className="message-meta">
+                    <p id="time">{message.time}</p>
+                    <p id="author">
+                      {props.roomData.names === message.names
+                        ? "you"
+                        : message.names}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </ScrollToBottom>
+      </div>
+      <div className="chat-footer">
         <input
           type="text"
-          placeholder="your message..."
           value={messageValue}
+          placeholder="Hey..."
           onChange={handleInputChange}
         />
-        <button onClick={sendMessage} disabled={!canSendMessage}>
+        <button disabled={!canSendMessage} onClick={sendMessage}>
           &#9658;
         </button>
       </div>
