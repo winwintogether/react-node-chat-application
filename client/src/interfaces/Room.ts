@@ -1,4 +1,9 @@
 export interface RoomInterface {
-    names: string,
-    roomId: string,
+  names: string;
+  room: string;
+}
+
+export interface MessageInterface extends RoomInterface {
+  time: string;
+  message: string;
 }

@@ -20,7 +20,7 @@ const JoinChat: React.FC<{ onJoinRoom: (roomData: RoomInterface) => void }> = (
 
     const newRoomData: RoomInterface = {
       names: namesRef.current!.value,
-      roomId: roomRef.current!.value,
+      room: roomRef.current!.value,
     };
 
     props.onJoinRoom(newRoomData);
