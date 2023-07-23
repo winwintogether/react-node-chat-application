@@ -22,6 +22,10 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log("user connected", socket.id);
   socket.on("disconnect", () => console.log("user disconnected", socket.id));
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`user with ID ${socket.id} join the room ${data}`);
+  });
 });
 
 server.listen(5000, () => console.log("listening on 5000"));
